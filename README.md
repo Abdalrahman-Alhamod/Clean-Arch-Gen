@@ -39,11 +39,9 @@
 
       1- Open PowerShell ISE by searching for it in the Start menu or pressing Win + R and typing powershell_ise.
 
-      2- Copy the following script and paste it into the PowerShell ISE window:
-   
-      ```powershell
-      .\script.ps1
-      ```
+      2- Copy the script in the `script.ps1` file and paste it into the PowerShell ISE window
+
+      3- Run the script
 
  ## Usage
 
