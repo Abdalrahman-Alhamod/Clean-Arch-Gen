@@ -1,6 +1,11 @@
 # Prompt the user for the alias name
 $AliasName = Read-Host "Please enter the alias name"
 
+if ([string]::IsNullOrWhiteSpace($AliasName)) {
+    Write-Host "Alias name cannot be empty. Please run the script again and provide a valid alias name."
+    exit
+}
+
 # Provide explanation for entering features path
 $Explanation = "Please enter the path to the features folder. For example, if your features are inside the 'lib' folder, enter 'lib/features'. The default path is 'lib/src'."
 Write-Host $Explanation
@@ -16,6 +21,10 @@ if ([string]::IsNullOrWhiteSpace($FeaturesPath)) {
 $AliasScript = @"
 `nfunction $($AliasName+'Function') {
     `$FeatureName = Read-Host 'Please enter the feature name'
+    if ([string]::IsNullOrWhiteSpace(`$FeatureName)) {
+        Write-Host 'Feature name cannot be empty. Please provide a valid feature name.'
+        return
+    }
     `$addGitkeep = Read-Host 'Do you want to add .gitkeep files to all folders? (yes/no)'
     `$basePath = Join-Path -Path (Get-Location) -ChildPath `$FeaturesPath/`$FeatureName
     `$directories = @(
@@ -64,3 +73,9 @@ Add-Content -Path $ProfilePath -Value $AliasScript
 
 # Reload the PowerShell profile to apply changes
 . $ProfilePath
+
+Write-Host "----------------------------------------------"
+Write-Host "Alias '$AliasName' has been created and added to your PowerShell profile." -ForegroundColor Green
+Write-Host "You can now use the alias '$AliasName' to create new feature folder structures." -ForegroundColor Green
+Write-Host "----------------------------------------------"
+
