@@ -26,7 +26,7 @@ $AliasScript = @"
         return
     }
     `$addGitkeep = Read-Host 'Do you want to add .gitkeep files to all folders? (yes/no)'
-    `$basePath = Join-Path -Path (Get-Location) -ChildPath `$FeaturesPath/`$FeatureName
+    `$basePath = Join-Path -Path (Get-Location) -ChildPath `"$FeaturesPath/`$FeatureName`"
     `$directories = @(
         'data/data_sources',
         'data/models',
